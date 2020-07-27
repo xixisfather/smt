@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.smt.mapper.ShipmentMergeMapper">
+
+    <!--插入-->
+    <insert id="insertShipmentMerge" parameterType="com.company.smt.model.ShipmentMerge" useGeneratedKeys="true" keyProperty="id">
+    insert into shipment_merge (id, shipment_id, shipment_merge_num)
+    values (#{id,jdbcType=BIGINT}, #{shipmentId,jdbcType=BIGINT}, #{shipmentMergeNum,jdbcType=INTEGER})
+    </insert>
+
+</mapper>

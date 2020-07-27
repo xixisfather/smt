@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.smt.mapper.ShipmentSplitMapper">
+
+    <!--插入-->
+    <insert id="insertShipmentSplit" parameterType="com.company.smt.model.ShipmentSplit">
+    insert into shipment_split (id, shipment_id, shipment_split_num,
+      shipment_merge_id)
+    values (#{id,jdbcType=BIGINT}, #{shipmentId,jdbcType=BIGINT}, #{shipmentSplitNum,jdbcType=INTEGER},
+      #{shipmentMergeId,jdbcType=BIGINT})
+    </insert>
+
+    <!--插入list-->
+    <insert id="insertShipmentSplitList" parameterType="java.util.List">
+    insert into shipment_split (shipment_id, shipment_split_num,
+      shipment_merge_id)
+    values
+        <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.shipmentId,jdbcType=BIGINT}, #{item.shipmentSplitNum,jdbcType=INTEGER},
+      #{item.shipmentMergeId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+
+    <update id="updateShipmentSplit"
+            parameterType="com.company.smt.model.ShipmentSplit">
+        update shipment_split
+        <set>
+            <if test="shipmentId != null">
+                shipment_id = #{shipmentId,jdbcType=BIGINT},
+            </if>
+            <if test="shipmentSplitNum != null">
+                shipment_split_num = #{shipmentSplitNum,jdbcType=INTEGER},
+            </if>
+            <if test="shipmentMergeId != null">
+                shipment_merge_id = #{shipmentMergeId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+</mapper>

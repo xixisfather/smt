@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.smt.mapper.ShipmentMapper">
+    <resultMap id="BaseResultMap" type="com.company.smt.model.Shipment">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="shipment_name" jdbcType="VARCHAR" property="shipmentName" />
+        <result column="shipment_num" jdbcType="INTEGER" property="shipmentNum" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,shipment_name,shipment_num
+  </sql>
+
+    <!--通过id查询货物-->
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from shipment where id= #{id}
+    </select>
+
+
+</mapper>
